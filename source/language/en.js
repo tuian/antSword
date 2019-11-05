@@ -420,6 +420,7 @@ Hot Keys:
     editor: {
       title: (path) => antSword.noxss(`Edit: ${path}`),
       toolbar: {
+        refresh: 'Refresh',
         save: 'Save',
         mode: 'Mode',
         encode: 'Open with Encoding'

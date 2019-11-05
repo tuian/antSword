@@ -440,7 +440,7 @@ class FileManager {
       this.core.request(
         this.core.filemanager.create_file({
           path: this.path + value,
-          content: '#Halo ANT!'
+          content: '#Halo AntWord!'
         })
       ).then((res) => {
         let ret = res['text'];
@@ -959,6 +959,12 @@ class FileManager {
         type: 'spacer'
       },
       {
+        id: 'refresh',
+        type: 'button',
+        icon: 'refresh',
+        text: LANG['editor']['toolbar']['refresh']
+      },
+      {
         id: 'save',
         type: 'button',
         icon: 'save',
@@ -1004,7 +1010,7 @@ class FileManager {
         self.core.request(
           self.core.filemanager.create_file({
             path: path,
-            content: editor.session.getValue() || 'Halo ANT!'
+            content: editor.session.getValue() || '#Halo AntWord!'
           })
         ).then((res) => {
           let ret = res['text'];
@@ -1025,6 +1031,27 @@ class FileManager {
       } else if (id.startsWith('encode_')) {
         let encode = id.split('_')[1];
         editor.session.setValue(iconv.decode(Buffer.from(codes), encode).toString());
+      } else if (id === 'refresh') {
+        // 获取文件代码
+        win.progressOn()
+        this.core.request(
+          this.core.filemanager.read_file({
+            path: path
+          })
+        ).then((res) => {
+          win.progressOff();
+          let ret = antSword.unxss(res['text'], false);
+          codes = Buffer.from(antSword.unxss(res['buff'].toString(), false));
+          let encoding = res['encoding'] || this.opts['encode'];
+          if (encoding.toUpperCase() == "UTF-8") {
+            encoding = "UTF8";
+          }
+          toolbar.setListOptionSelected('encode', `encode_${encoding}`);
+          editor.session.setValue(ret);
+        }).catch((err) => {
+          toastr.error(LANG['editor']['loadErr'](err), LANG_T['error']);
+          win.progressOff()
+        })
       } else {
         console.info('toolbar.onClick', id);
       }

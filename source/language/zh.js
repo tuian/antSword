@@ -420,6 +420,7 @@ module.exports = {
     editor: {
       title: (path) => `编辑: ${path}`,
       toolbar: {
+        refresh: '刷新',
         save: '保存',
         mode: '高亮',
         encode: '用此编码打开'

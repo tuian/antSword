@@ -419,6 +419,7 @@ module.exports = {
     editor: {
       title: (path) => `編輯: ${path}`,
       toolbar: {
+        refresh: '刷新',
         save: '保存',
         mode: '高亮',
         encode: '用此編碼打開'
