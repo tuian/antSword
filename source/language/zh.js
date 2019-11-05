@@ -191,7 +191,15 @@ module.exports = {
         filemanagerCache: '文件管理使用缓存',
         uploadFragment: '上传文件分片大小',
         requestTimeout: '请求超时',
-        commandPath: '自定义终端执行路径'
+        commandPath: '自定义终端执行路径',
+        customDatatag: {
+          title: '数据分割符',
+          usecustomdatatag: '开启自定义数据分割符',
+          tags: '开始标记',
+          tage: '结束标记',
+          exphint: '数据分割符请避免和页面中其它不相关的字符相同',
+          valideq: '开始标记与结束标记不能相同'
+        },
       }
     },
     toolbar: {

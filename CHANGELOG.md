@@ -2,6 +2,17 @@
 > 有空会补补BUG、添添新功能。    
 > 同时也欢迎大家的参与！感谢各位朋友的支持！ .TAT.
 
+## `v(2.1.8)`
+
+* 新增「自定义数据分割符」配置
+
+> 你可以将任何你喜欢的字符组合定义成数据的「起始符」或「结束符」
+
+![data_separtor_1.png](https://i.loli.net/2019/11/05/per1BvOMh5IKZqt.png)
+
+![data_separtor_2.png](https://i.loli.net/2019/11/05/QECmJprI5FldB9b.png)
+
+
 ## 2019/10/30 `v(2.1.7)`
 
 ### 安全更新

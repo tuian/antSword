@@ -191,7 +191,15 @@ module.exports = {
         filemanagerCache: "Use the filemanager's cache",
         uploadFragment: "Upload File Fragmentation Size",
         requestTimeout: 'Request timeout',
-        commandPath: 'Custom terminal-execPath'
+        commandPath: 'Custom terminal-execPath',
+        customDatatag: {
+          title: 'Data separator',
+          usecustomdatatag: 'Use custom data separator',
+          tags: 'Start tag',
+          tage: 'End tag',
+          exphint: 'The data separator should be the same as other unrelated characters on the page',
+          valideq: 'Start tag and End tag cannot be the same'
+        },
       }
     },
     toolbar: {
