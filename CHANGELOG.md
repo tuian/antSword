@@ -26,6 +26,10 @@
 
 * 新建文件默认内容更改为 `#Halo AntSword!`
 
+### 其它
+
+* ACE 编辑器增加 `ace/mode/antswordjwt` 语法模式, 支持 JWT Token 语法高亮
+
 ## 2019/10/30 `v(2.1.7)`
 
 ### 安全更新
