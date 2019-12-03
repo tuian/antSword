@@ -7,6 +7,16 @@
 ### 核心
 
 * 修复全局过滤 xss 时 text 和 buff 过滤规则不一致问题
+* core.command.exec 增加第 3个参数 env
+
+ 格式为: `key1|||askey|||val1|||asline|||key2|||askey|||val2|||asline|||`
+ 
+ 对应的环境变量为:
+
+```
+key1=val1
+key2=val2
+```
 
 ### 数据管理
 
@@ -27,6 +37,20 @@
  > 如果服务器上的文件内容发生改变, 再也不需要关掉重打开了
 
 * 新建文件默认内容更改为 `#Halo AntSword!`
+
+### 虚拟终端
+
+* 新增 `asenv` 本地指令, 用于手动设置当前终端下的环境变量
+
+Linux:
+
+![terminal_asenv_1.png](https://i.loli.net/2019/12/03/k3AgCmlNbIM8QDZ.png)
+
+Windows:
+
+![terminal_asenv_2.png](https://i.loli.net/2019/12/03/uzjvAgRT1Bdbkhw.png)
+
+> 注意: asp 下设置之后, 当前机器上的IIS子进程都会受影响, 过一段时间子进程退出后正常
 
 ### 其它
 

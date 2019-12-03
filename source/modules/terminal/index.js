@@ -50,6 +50,7 @@ class Terminal {
     this.sess_powershell = null;
     this.core = new antSword['core'][opts['type']](opts);
     this.cache = new antSword['CacheManager'](this.opts['_id']);
+    this.asenvironmet = {};
 
     this
       .getInformation()
@@ -274,6 +275,19 @@ class Terminal {
         }
         return;
       }
+      if (cmd.substr(0, 5) === 'asenv') {
+        var envstr = cmd.substr(5).trim();
+        if (envstr.length > 0 && envstr.indexOf('=') > 0) {
+          var k = envstr.substr(0, envstr.indexOf('=')).trim();
+          var v = envstr.substr(envstr.indexOf('=') + 1).trim();
+          this.asenvironmet[k] = v;
+        } else {
+          Object.keys(this.asenvironmet).map((k) => {
+            term.echo(`${antSword.noxss(k)}=${antSword.noxss(this.asenvironmet[k])}`);
+          });
+        }
+        return;
+      }
       term.pause();
       // 是否有缓存
       let cacheTag = 'command-' + Buffer
@@ -308,7 +322,10 @@ class Terminal {
         .core
         .request(this.core.command.exec({
           cmd: this.parseCmd(cmd, this.path),
-          bin: _bin
+          bin: _bin,
+          env: Object.keys(this.asenvironmet).map((k) => {
+            return `${k}|||askey|||${this.asenvironmet[k]}|||asline|||`;
+          }).join(''),
         }))
         .then((ret) => {
           let _ = antSword.unxss(ret['text'], false);
@@ -365,7 +382,7 @@ class Terminal {
       exit: false,
       // < 1.0.0 时使用3个参数 completion: (term, value, callback) => {}
       completion: (value, callback) => {
-        callback(['ashelp', 'ascmd', 'aslistcmd', 'aspowershell', 'quit', 'exit'].concat(
+        callback(['asenv', 'ashelp', 'ascmd', 'aslistcmd', 'aspowershell', 'quit', 'exit'].concat(
           this.isWin ? [
             'dir', 'whoami', 'net', 'ipconfig', 'netstat', 'cls', 'wscript', 'nslookup', 'copy', 'del', 'ren', 'md', 'type', 'ping'
           ] : [

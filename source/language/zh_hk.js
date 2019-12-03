@@ -221,6 +221,7 @@ module.exports = {
     ascmd: {
       help: '輸入 ashelp 查看本地命令',
       ashelp: `使用幫助:
+ asenv[Key=Value]\t\t設置或顯示環境變量, eg: asenv AAA=BBB
  ascmd [file]\t\t指定file來執行命令, eg: ascmd /bin/bash
  aslistcmd\t\t列出可使用的命令解釋器
  aspowershell [on|off]\t\t啟用/關閉PowerShell模式, eg: aspowershell on

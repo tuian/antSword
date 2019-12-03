@@ -222,6 +222,7 @@ module.exports = {
     ascmd: {
       help: 'Enter ashelp to view local commands',
       ashelp: `Usage:
+ asenv [Key=Value]\t\tSet or Display Environment Variables, eg: asenv AAA=BBB
  ascmd [file]\t\tExecute the command with file, eg: ascmd /bin/bash
  aslistcmd\t\tList available command interpreters
  aspowershell [on|off]\t\tEnable/Disable PowerShell mode, eg: aspowershell on
