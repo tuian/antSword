@@ -18,6 +18,8 @@
 
 ![data_separtor_2.png](https://i.loli.net/2019/11/05/QECmJprI5FldB9b.png)
 
+* 修复「创建副本」时不会同步 decoder 的问题
+
 ### 文件管理
 
 * 编辑文件新增「刷新」按钮
