@@ -226,6 +226,7 @@ module.exports = {
  ascmd [file]\t\tExecute the command with file, eg: ascmd /bin/bash
  aslistcmd\t\tList available command interpreters
  aspowershell [on|off]\t\tEnable/Disable PowerShell mode, eg: aspowershell on
+ aswinmode [on|off]\t\tEnable/Disable Windows mode(for recognition errors), eg: aswinmode on
  quit\t\tClose terminal
  exit\t\tClose terminal
 

@@ -225,6 +225,7 @@ module.exports = {
  ascmd [file]\t\t指定file來執行命令, eg: ascmd /bin/bash
  aslistcmd\t\t列出可使用的命令解釋器
  aspowershell [on|off]\t\t啟用/關閉PowerShell模式, eg: aspowershell on
+ aswinmode [on|off]\t\t強制啟用/關閉為Windows模式(針對識別出錯的情況), eg: aswinmode on
  quit\t\t關閉終端
  exit\t\t關閉終端
 

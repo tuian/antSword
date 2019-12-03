@@ -275,6 +275,22 @@ class Terminal {
         }
         return;
       }
+      // 当 web 目录使用的是 smb 目录时, windows 下路径为 //xxx.xxx.xxx.xxx/share
+      // 第一个字符为 / 则会识别为 Linux 系统, 需要使用该指令手动切换成 windows mode
+      // Fix https://github.com/AntSwordProject/antSword/issues/229
+      if (cmd.substr(0, 9) === 'aswinmode') {
+        var _switch = cmd.substr(9).trim().toLowerCase();
+        if (_switch === "off") {
+          self.isWin = false;
+          term.echo("Windows Mode: [[b;red;]Off]");
+        } else if (_switch === "on") {
+          self.isWin = true;
+          term.echo("Windows Mode: [[b;green;]On]");
+        } else {
+          term.echo(`Current Windows Mode: ${self.isWin ? "[[b;green;]On]" : "[[b;red;]Off]"}`);
+        }
+        return;
+      }
       if (cmd.substr(0, 5) === 'asenv') {
         var envstr = cmd.substr(5).trim();
         if (envstr.length > 0 && envstr.indexOf('=') > 0) {
@@ -382,7 +398,7 @@ class Terminal {
       exit: false,
       // < 1.0.0 时使用3个参数 completion: (term, value, callback) => {}
       completion: (value, callback) => {
-        callback(['asenv', 'ashelp', 'ascmd', 'aslistcmd', 'aspowershell', 'quit', 'exit'].concat(
+        callback(['asenv', 'ashelp', 'ascmd', 'aslistcmd', 'aspowershell', 'aswinmode', 'quit', 'exit'].concat(
           this.isWin ? [
             'dir', 'whoami', 'net', 'ipconfig', 'netstat', 'cls', 'wscript', 'nslookup', 'copy', 'del', 'ren', 'md', 'type', 'ping'
           ] : [

@@ -52,6 +52,10 @@ Windows:
 
 > 注意: asp 下设置之后, 当前机器上的IIS子进程都会受影响, 过一段时间子进程退出后正常
 
+* 新增 `aswinmode` 本地指令, 在自动识别操作系统错误时, 可使用该指令手动切换命令行运行的模式 (#229 thx @nullnull1604-outlook)
+
+![terminal_aswinmode.png](https://i.loli.net/2019/12/03/HpbjN6sERhYoiUX.png)
+
 ### 其它
 
 * ACE 编辑器增加 `ace/mode/antswordjwt` 语法模式, 支持 JWT Token 语法高亮
