@@ -871,7 +871,7 @@ class FileManager {
     let codes = '';
     let win;
     let hinttext = '';
-    let tooltip = `IP:${this.opts['ip']} File:${antSword.noxss(path)}`;
+    let tooltip = `IP:${this.opts['ip']} File:`;
     if (openfileintab == false) {
       win = this.createWin({
         title: LANG['editor']['title'](antSword.noxss(path)),
@@ -894,7 +894,7 @@ class FileManager {
         tmpbuf.write(name, 100 - name.length);
         hitpath = tmpbuf.toString();
       }
-      hinttext = `IP:${this.opts['ip']} File:${antSword.noxss(hitpath)}`;
+      hinttext = `IP:${this.opts['ip']} File:`;
     }
 
     win.progressOn();
@@ -951,6 +951,12 @@ class FileManager {
         id: 'hinttext',
         type: 'text',
         text: hinttext
+      },
+      {
+        id: 'filepath',
+        type: 'buttonInput',
+        width: 500,
+        value: antSword.noxss(path),
       },
       {
         type: 'separator'
@@ -1040,6 +1046,18 @@ class FileManager {
           })
         ).then((res) => {
           win.progressOff();
+          name = path.substr(path.lastIndexOf('/') + 1);
+          if (openfileintab == false) {
+            win.setText(LANG['editor']['title'](antSword.noxss(path)));
+          } else {
+            win.setText(`<i class="fa fa-file-o"></i> ${antSword.noxss(name)}`);
+          }
+          ext = name.substr(name.lastIndexOf('.') + 1);
+          if (!(ext in ext_dict)) {
+            ext = 'txt'
+          };
+          toolbar.callEvent('onClick', [`mode_${ext_dict[ext]}`]);
+
           let ret = antSword.unxss(res['text'], false);
           codes = Buffer.from(antSword.unxss(res['buff'].toString(), false));
           let encoding = res['encoding'] || this.opts['encode'];
@@ -1054,6 +1072,14 @@ class FileManager {
         })
       } else {
         console.info('toolbar.onClick', id);
+      }
+    });
+    toolbar.attachEvent('onEnter', (id, value) => {
+      switch (id) {
+        case 'filepath':
+          path = toolbar.getInput('filepath').value;
+          toolbar.callEvent('onClick', ['refresh']);
+          break;
       }
     });
 

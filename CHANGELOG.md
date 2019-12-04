@@ -38,6 +38,10 @@ key2=val2
 
 * 新建文件默认内容更改为 `#Halo AntSword!`
 
+* 编辑文件文件路径改为输入框, 现在可以手动输入文件路径后, 按 Enter 键快速打开文件了
+
+![file_manager_filepath.png](https://i.loli.net/2019/12/04/rtpJCafoDLSBsAi.png)
+
 ### 虚拟终端
 
 * 新增 `asenv` 本地指令, 用于手动设置当前终端下的环境变量
