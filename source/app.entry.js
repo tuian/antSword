@@ -174,7 +174,7 @@ antSword['encoders'] = (function () {
     php: [],
     custom: []
   };
-  let userencoder_path = path.join(remote.process.env.AS_WORKDIR, 'antData/encoders');
+  let userencoder_path = path.join(remote.process.env.AS_DATADIR, 'encoders');
   // 初始化
   !fs.existsSync(userencoder_path) ?
     fs.mkdirSync(userencoder_path) :
@@ -207,7 +207,7 @@ antSword['encoders'] = (function () {
   // ['asp','aspx','php','custom'].map((t)=>{
   // antSword["core"][t].prototype.encoders.map((e)=>{     encoders[t].push(e);
   // });   encoders[t] = encoders[t].unique(); });
-  // fs.readdirSync(path.join(process.env.AS_WORKDIR,'encoder'),(err,f) => {
+  // fs.readdirSync(path.join(process.env.AS_DATADIR,'encoder'),(err,f) => {
   // if(err || !f) return ;   console.debug(f);   let farr = f.split("#");
   // encoders[farr[0]].push(farr[1]); });
   return encoders;
@@ -227,7 +227,7 @@ antSword['decoders'] = (function () {
     php: [],
     custom: []
   };
-  let userdecoder_path = path.join(remote.process.env.AS_WORKDIR, 'antData/encoders');
+  let userdecoder_path = path.join(remote.process.env.AS_DATADIR, 'encoders');
   // 初始化
   !fs.existsSync(userdecoder_path) ?
     fs.mkdirSync(userdecoder_path) :
@@ -260,7 +260,7 @@ antSword['decoders'] = (function () {
   // ['asp','aspx','php','custom'].map((t)=>{
   // antSword["core"][t].prototype.encoders.map((e)=>{     encoders[t].push(e);
   // });   encoders[t] = encoders[t].unique(); });
-  // fs.readdirSync(path.join(process.env.AS_WORKDIR,'encoder'),(err,f) => {
+  // fs.readdirSync(path.join(process.env.AS_DATADIR,'encoder'),(err,f) => {
   // if(err || !f) return ;   console.debug(f);   let farr = f.split("#");
   // encoders[farr[0]].push(farr[1]); });
   return decoders;
@@ -413,7 +413,7 @@ ipcRenderer
         if (t > 1024)
           t = t / 1024;
         else if (i === false)
-        i = q;
+          i = q;
       if (i === false)
         i = b.length - 1;
       return Math.round(t * 100) / 100 + " " + b[i];

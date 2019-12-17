@@ -30,7 +30,7 @@ class Base {
        * @param  {Object} data 请求数据
        * @return {Object}      生成数据
        */
-      default (pwd, data) {
+      default(pwd, data) {
         data[pwd] = data['_'];
         delete data['_'];
         return data;
@@ -74,11 +74,11 @@ class Base {
   rsaEncrypt() {
     let key = new NodeRSA();
     try {
-      let priKey = fs.readFileSync(path.join(remote.process.env.AS_WORKDIR, `antData/key_rsa`));
+      let priKey = fs.readFileSync(path.join(remote.process.env.AS_DATADIR, 'key_rsa'));
       if (priKey.length > 0) {
         key.importKey(priKey.toString(), 'private');
       }
-    } catch (e) {}
+    } catch (e) { }
     return key;
   }
 

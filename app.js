@@ -24,13 +24,9 @@ app.once('ready', () => {
    * - 可通过注册的协议访问资源文件，如ant-static://libs/jquery.jquery.js
    */
   [
-    [
-      'static', '/static/', 13
-    ],
-    [
-      'views', '/views/', 12
-    ], //- 通过访问访问ant-views来访问views 文件
-    ['src', '/source/', 10] //- 通过访问访问ant-src来访问source 文件
+    ['static', '/static/', 13],
+    ['views', '/views/', 12], //- 通过访问访问 ant-views 来访问 views 文件
+    ['src', '/source/', 10] //- 通过访问访问 ant-src 来访问 source 文件
   ].map((_) => {
     protocol.registerFileProtocol(`ant-${_[0]}`, (req, cb) => {
       if (req.url.endsWith('/')) {
@@ -70,18 +66,18 @@ app.once('ready', () => {
 
   // 窗口事件监听
   mainWindow.on('close', (event) => {
-      event.preventDefault();
-      app.exit(0);
-    }).on('minimize', (event) => {
-      event.preventDefault();
-      if (process.platform == 'darwin') {
-        app.hide();
-      } else if (process.platform == 'linux') {
-        return;
-      } else {
-        mainWindow.hide();
-      }
-    })
+    event.preventDefault();
+    app.exit(0);
+  }).on('minimize', (event) => {
+    event.preventDefault();
+    if (process.platform == 'darwin') {
+      app.hide();
+    } else if (process.platform == 'linux') {
+      return;
+    } else {
+      mainWindow.hide();
+    }
+  })
     .on('resize', reloadUI)
     .on('maximize', reloadUI)
     .on('unmaximize', reloadUI)
@@ -100,6 +96,6 @@ app.once('ready', () => {
     'update',
     'plugStore'
   ].map((_) => {
-    new(require(`./modules/${_}`))(electron, app, mainWindow);
+    new (require(`./modules/${_}`))(electron, app, mainWindow);
   });
 });

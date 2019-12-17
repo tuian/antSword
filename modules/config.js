@@ -17,11 +17,9 @@ class Conf {
     // 旧数据存储目录
     let _oldPath = path.join(process.env.HOME || process.env.LOCALAPPPATH || process.cwd() || '.', '.antSword', 'shell.db');
     // 数据存储目录
-    this.basePath = path.join(process.env.AS_WORKDIR, 'antData')
-      // 初始化目录
-      !fs.existsSync(this.basePath) ?
-      fs.mkdirSync(this.basePath) :
-      null;
+    this.basePath = process.env.AS_DATADIR ? process.env.AS_DATADIR : path.join(process.env.AS_WORKDIR, 'antData');
+    // 初始化目录
+    !fs.existsSync(this.basePath) ? fs.mkdirSync(this.basePath) : null;
     // 旧数据搬迁
     if (fs.existsSync(_oldPath) && !fs.existsSync(this.dataPath)) {
       fs.writeFileSync(this.dataPath, fs.readFileSync(_oldPath))
