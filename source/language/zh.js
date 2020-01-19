@@ -179,6 +179,7 @@ module.exports = {
         nohttps: '忽略HTTPS证书',
         usemultipart: '使用 Multipart 发包',
         userandomvariable: '使用随机英文单词变量',
+        addMassData: '增加垃圾数据',
         chunk: {
           title: '分块传输(实验性功能)',
           usechunk: '开启分块传输发包',
