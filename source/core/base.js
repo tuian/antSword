@@ -130,8 +130,8 @@ class Base {
    * @return {Object}        [返回字符串处理函数对象]
    */
   format(opts) {
-    let encode=opts['encode'];
-    let randomPrefix= parseInt(opts.otherConf["random-Prefix"]);
+    let encode = opts['encode'];
+    let randomPrefix = parseInt(opts.otherConf["random-Prefix"]);
     return {
       /**
        * base64编码
@@ -147,13 +147,13 @@ class Base {
        * @return {String}     编码后的字符串
        */
       newbase64(str) {
-        let randomString=(length)=>{
-          let chars='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let randomString = (length) => {
+          let chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
           let result = '';
           for (let i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
           return result;
-      }
-        return randomString(randomPrefix)+Buffer.from(iconv.encode(Buffer.from(str), encode)).toString('base64');
+        }
+        return randomString(randomPrefix) + Buffer.from(iconv.encode(Buffer.from(str), encode)).toString('base64');
       },
       /**
        * 字符串转16进制（不进行编码转换
@@ -226,7 +226,7 @@ class Base {
                 })
             }
             // 发送HTTP请求
-            data['_']=data['_'].replace(/#randomPrefix#/g,this.__opts__.otherConf["random-Prefix"]);
+            data['_'] = data['_'].replace(/#randomPrefix#/g, this.__opts__.otherConf["random-Prefix"]);
             return data;
           }
         } else {

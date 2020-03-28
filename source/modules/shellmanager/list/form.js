@@ -267,6 +267,7 @@ class Form {
           "php": /.+\.ph(p[345]?|s|t|tml)/,
           "aspx": /.+\.as(px|mx)/,
           "asp": /.+\.(as(p|a|hx)|c(dx|er))/,
+          "jsp": /.+\.(jsp[x]?)/,
           "custom": /.+\.((jsp[x]?)|cgi)/
         }
         let typecombo = form.getCombo('type');
@@ -276,6 +277,8 @@ class Form {
           typecombo.selectOption(typecombo.getOption('aspx').index);
         } else if (file_match.asp.test(id) == true) {
           typecombo.selectOption(typecombo.getOption('asp').index);
+        } else if (file_match.jsp.test(id) == true) {
+          typecombo.selectOption(typecombo.getOption('jsp').index);
         } else if (file_match.custom.test(id) == true) {
           typecombo.selectOption(typecombo.getOption('custom').index);
         }
