@@ -267,6 +267,7 @@ class Form {
           "php": /.+\.ph(p[345]?|s|t|tml)/,
           "aspx": /.+\.as(px|mx)/,
           "asp": /.+\.(as(p|a|hx)|c(dx|er))/,
+          "jsp": /.+\.(jsp[x]?)/,
           "custom": /.+\.((jsp[x]?)|cgi)/
         }
         let typecombo = form.getCombo('type');
@@ -276,6 +277,8 @@ class Form {
           typecombo.selectOption(typecombo.getOption('aspx').index);
         } else if (file_match.asp.test(id) == true) {
           typecombo.selectOption(typecombo.getOption('asp').index);
+        } else if (file_match.jsp.test(id) == true) {
+          typecombo.selectOption(typecombo.getOption('jsp').index);
         } else if (file_match.custom.test(id) == true) {
           typecombo.selectOption(typecombo.getOption('custom').index);
         }
@@ -467,6 +470,7 @@ class Form {
       'ignore-https': 0,
       'use-multipart': 0,
       'add-MassData': 0,
+      'random-Prefix': '2',
       'use-random-variable': 0,
       'use-chunk': 0,
       'chunk-step-byte-min': 2,
@@ -610,7 +614,30 @@ class Form {
           checked: opt['filemanager-cache'] === 1
         }, {
           type: "label",
+          label: LANG['list']['otherConf']['randomPrefix']
+        }, {
+          type: "combo",
+          inputWidth: 100,
+          name: "random-Prefix",
+          options: ((items) => {
+            let ret = [];
+            // 如果自定义的路径不在items里，则++
+            if (items.indexOf(opt['random-Prefix']) === -1) {
+              items.unshift(opt['random-Prefix']);
+            }
+            items.map((_) => {
+              ret.push({
+                text: _,
+                value: _,
+                selected: opt['random-Prefix'] === _
+              })
+            });
+            return ret;
+          })(['1', '2', '3', '5','10','15'])
+        }, {
+          type: "label",
           label: LANG['list']['otherConf']['uploadFragment']
+          
         }, {
           type: "combo",
           label: '/kb',
