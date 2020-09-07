@@ -30,7 +30,7 @@ class Base {
        * @param  {Object} data 请求数据
        * @return {Object}      生成数据
        */
-      default (pwd, data) {
+      default(pwd, data) {
         data[pwd] = data['_'];
         delete data['_'];
         return data;
@@ -78,7 +78,7 @@ class Base {
       if (priKey.length > 0) {
         key.importKey(priKey.toString(), 'private');
       }
-    } catch (e) {}
+    } catch (e) { }
     return key;
   }
 
@@ -154,6 +154,16 @@ class Base {
           return result;
         }
         return randomString(randomPrefix) + Buffer.from(iconv.encode(Buffer.from(str), encode)).toString('base64');
+      },
+      newb64buffer(str) {
+        let randomString = (length) => {
+          let chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+          let result = '';
+          for (let i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+          return result;
+        }
+        let buff = Buffer.from(str).toString('hex').toUpperCase();
+        return randomString(randomPrefix) + Buffer.from(iconv.encode(Buffer.from(buff), encode)).toString('base64');
       },
       /**
        * 字符串转16进制（不进行编码转换
