@@ -145,16 +145,14 @@ class ViewSite {
           data.push({
             id: i + 1,
             data: [
-              c.name, c.value, c.domain, c.path, c.session ?
-              'Session' :
-              new Date(c.expirationDate).toUTCString(),
+              antSword.noxss(c.name),
+              antSword.noxss(c.value),
+              antSword.noxss(c.domain),
+              antSword.noxss(c.path),
+              c.session ? 'Session' : new Date(c.expirationDate).toUTCString(),
               c.name.length + c.value.length,
-              c.httpOnly ?
-              'httpOnly' :
-              '',
-              c.secure ?
-              'Secure' :
-              ''
+              c.httpOnly ? 'httpOnly' : '',
+              c.secure ? 'Secure' : ''
             ]
           });
         });
