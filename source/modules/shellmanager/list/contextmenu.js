@@ -50,8 +50,8 @@ class ContextMenu {
       [
         'copyurl', 'copy', selectedData,
         this
-        .copyUrl
-        .bind(this, data[0])
+          .copyUrl
+          .bind(this, data[0])
       ],
       false,
       [
@@ -60,27 +60,27 @@ class ContextMenu {
       [
         'pluginStore', 'cart-arrow-down', false,
         antSword['menubar']
-        .run
-        .bind(antSword['menubar'], 'plugin-store')
+          .run
+          .bind(antSword['menubar'], 'plugin-store')
       ],
       false,
       [
         'add', 'plus-circle', false,
         this
-        .addData
-        .bind(this)
+          .addData
+          .bind(this)
       ],
       [
         'edit', 'edit', selectedData,
         this
-        .editData
-        .bind(this, data[0])
+          .editData
+          .bind(this, data[0])
       ],
       [
         'delete', 'remove', selectedMultiData,
         this
-        .delData
-        .bind(this, ids)
+          .delData
+          .bind(this, ids)
       ],
       false,
       [
@@ -89,27 +89,27 @@ class ContextMenu {
       [
         'copy', 'copy', selectedData,
         this
-        .copyData
-        .bind(this, data[0])
+          .copyData
+          .bind(this, data[0])
       ],
       [
         'search', 'search', false,
         this
-        .searchData
-        .bind(this, event)
+          .searchData
+          .bind(this, event)
       ],
       false,
       [
         'clearCache', 'trash-o', selectedData,
         this
-        .clearCache
-        .bind(this, id)
+          .clearCache
+          .bind(this, id)
       ],
       [
         'clearAllCache', 'trash', false,
         this
-        .clearAllCache
-        .bind(this)
+          .clearAllCache
+          .bind(this)
       ]
     ].map((menu) => {
       // 分隔符号
@@ -177,7 +177,8 @@ class ContextMenu {
                   // 判断脚本是否支持，不支持则禁止
                   if (p['info']['scripts'] && p['info']['scripts'].length > 0) {
                     infos.map((_info) => {
-                      if (p['info']['scripts'].indexOf(_info['type']) === -1) {
+                      console.log(p['info']['scripts'])
+                      if (p['info']['scripts'].indexOf("*") === -1 && p['info']['scripts'].indexOf(_info['type']) === -1) {
                         // 如果检测到不支持的脚本，则禁止
                         ret = true;
                       }
@@ -185,7 +186,7 @@ class ContextMenu {
                   }
                   // 判断是否支持多目标执行
                   return ret || !p['info']['multiple'];
-                })() : info && (p['info']['scripts'] || []).indexOf(info['type']) === -1,
+                })() : info && (p['info']['scripts'] || []).indexOf("*") === -1 && (p['info']['scripts'] || []).indexOf(info['type']) === -1,
               action: ((plug) => () => {
                 // 如果没有加载到内存，则加载
                 if (!antSword['plugins'][plug['_id']]['module']) {
