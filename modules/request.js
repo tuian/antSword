@@ -18,10 +18,10 @@ const {
 
 let logger;
 // 请求UA
-const USER_AGENT = 'antSword/v2.1';
+const USER_AGENT = 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)';
 
 // 请求超时
-const REQ_TIMEOUT = 10000;
+const REQ_TIMEOUT = 360000;
 
 // 代理配置
 const APROXY_CONF = {
